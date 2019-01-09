@@ -119,6 +119,11 @@ module.exports = {
             loader: 'webpack-glsl-loader'
           }
         )
+      } else {
+        config.module.rules.push({
+          test: /\.glsl$/,
+          loader: 'webpack-glsl-loader'
+        })
       }
     }
   }
