@@ -25,6 +25,8 @@ export default class Canvas {
     this.uniforms = uniforms
     this.material = null
 
+    this.ratio = 1
+
     this.setConfigFunction = this.setConfig.bind(this)
     this.resizeFunction = this.resize.bind(this)
     this.updateFunction = this.update.bind(this)
@@ -38,7 +40,10 @@ export default class Canvas {
     this.material = new RawShaderMaterial({
       uniforms: {
         time: { type: 'f', value: 0 },
-        resolution: { type: 'fv2', value: new Vector2(this.w, this.h) },
+        resolution: {
+          type: 'fv2',
+          value: new Vector2(this.w * this.ratio, this.h * this.ratio)
+        },
         uniforms: this.uniforms
       },
       vertexShader: this.vert,
@@ -82,6 +87,7 @@ export default class Canvas {
   }
 
   setConfig() {
+    this.ratio = window.devicePixelRatio
     this.domRect = this.container.getBoundingClientRect()
 
     this.w = this.domRect.right - this.domRect.left
@@ -94,7 +100,10 @@ export default class Canvas {
     const time = performance.now() * 0.001
 
     this.material.uniforms.time.value = time
-    this.material.uniforms.resolution.value = new Vector2(this.w, this.h)
+    this.material.uniforms.resolution.value = new Vector2(
+      this.w * this.ratio,
+      this.h * this.ratio
+    )
 
     this.renderer.render(this.scene, this.camera)
   }
