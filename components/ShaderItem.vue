@@ -22,7 +22,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(this.id)
     const container = document.getElementById(`container${this.id}`)
     const frag = await require(`@/assets/shader/${this.id}/fragment.glsl`)
     const vert = await require(`@/assets/shader/${this.id}/vertex.glsl`)
