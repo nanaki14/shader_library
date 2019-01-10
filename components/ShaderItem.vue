@@ -15,14 +15,19 @@ export default {
     id: {
       default: 0,
       type: Number
+    },
+    uniforms: {
+      default: null,
+      type: Object
     }
   },
   async mounted() {
+    console.log(this.id)
     const container = document.getElementById(`container${this.id}`)
     const frag = await require(`@/assets/shader/${this.id}/fragment.glsl`)
     const vert = await require(`@/assets/shader/${this.id}/vertex.glsl`)
 
-    this.initCanvs(container, frag, vert, {})
+    this.initCanvs(container, frag, vert, this.uniforms)
   }
 }
 </script>

@@ -44,7 +44,7 @@ export default class Canvas {
           type: 'fv2',
           value: new Vector2(this.w * this.ratio, this.h * this.ratio)
         },
-        uniforms: this.uniforms
+        ...this.uniforms
       },
       vertexShader: this.vert,
       fragmentShader: this.frag,

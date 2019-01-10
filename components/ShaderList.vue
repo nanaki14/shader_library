@@ -3,7 +3,8 @@
     <ShaderItem
       v-for="item in list"
       :key="item.id"
-      :id="item.id" />
+      :id="item.id"
+      :uniforms="item.uniforms" />
   </section>
 </template>
 
@@ -17,7 +18,7 @@ export default {
     ShaderItem
   },
   computed: {
-    list: () => {
+    list() {
       return list
     }
   }

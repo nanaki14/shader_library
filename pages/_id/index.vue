@@ -1,7 +1,9 @@
 <template>
   <div class="Single">
-    <ShaderItem :id="id"/>
-    <time>{{ list[id - 1].date }}</time>
+    <ShaderItem
+      :id="id"
+      :uniforms="item.uniforms" />
+    <time>{{ item.date }}</time>
   </div>
 </template>
 
@@ -19,8 +21,12 @@ export default {
     }
   },
   computed: {
-    list: () => {
-      return list
+    item() {
+      return list.find(i => {
+        if (i.id === this.id) {
+          return i
+        }
+      })
     }
   }
 }
