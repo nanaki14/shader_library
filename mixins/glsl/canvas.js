@@ -17,6 +17,9 @@ export default class Canvas {
     this.w = 0
     this.h = 0
 
+    this.mouseX = 0
+    this.mouseY = 0
+
     this.scene = null
     this.camera = null
 
@@ -43,6 +46,10 @@ export default class Canvas {
         resolution: {
           type: 'fv2',
           value: new Vector2(this.w * this.ratio, this.h * this.ratio)
+        },
+        mouse: {
+          type: 'fv2',
+          value: new Vector2(this.mouseX, -this.mouseY)
         },
         ...this.uniforms
       },
@@ -82,6 +89,11 @@ export default class Canvas {
       this.resizeFunction()
     })
 
+    this.container.addEventListener('mousemove', e => {
+      this.mouseX = ((e.clientX - this.domRect.left) / this.w) * 2.0 - 1.0
+      this.mouseY = ((e.clientY - this.domRect.top) / this.h) * 2.0 - 1.0
+    })
+
     this.resizeFunction()
     this.updateFunction()
   }
@@ -104,6 +116,10 @@ export default class Canvas {
       this.w * this.ratio,
       this.h * this.ratio
     )
+
+    this.material.uniforms.mouse.value = new Vector2(this.mouseX, -this.mouseY)
+    // console.log(Math.abs(-this.mouseY))
+    // console.log(-this.mouseY)
 
     this.renderer.render(this.scene, this.camera)
   }
