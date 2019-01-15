@@ -2,6 +2,7 @@ precision mediump float;
 
 uniform float time;
 uniform vec2 resolution;
+uniform vec2 mouse;
 
 float plot(vec2 st, float pct) {
   return smoothstep(pct - 0.02,pct, st.y) - smoothstep(pct, pct + 0.02, st.y);
