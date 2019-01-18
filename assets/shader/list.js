@@ -2,6 +2,23 @@ import { TextureLoader } from 'three'
 
 const list = [
   {
+    id: 15,
+    date: '2019-01-18',
+    uniforms: {
+      texture: {}
+    }
+  },
+  {
+    id: 14,
+    date: '2019-01-16',
+    uniforms: {
+      texture: {
+        type: 't',
+        value: new TextureLoader().load('/texture/nanaki.jpg')
+      }
+    }
+  },
+  {
     id: 13,
     date: '2019-01-15',
     uniforms: {}
